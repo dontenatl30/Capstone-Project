@@ -1,23 +1,35 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const imageRoutes = require('./imageRoutes'); // Update the path accordingly
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const app = express();
+const port = process.env.PORT || 3002; 
 
-var app = express();
+const corsOptions = {
+  origin: 'http://localhost:5173', // Replace with the actual origin of your React frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies to be sent along with the request (if needed)
+};
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', imageRoutes); // Mount the routes under the /api URL prefix
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -38,12 +50,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
 module.exports = app;
-
-// donteleblanc@Dontes-MacBook-Pro CAPSTONE-PROJECT % npx express-generator
-
-// warning: the default view engine will not be jade in future releases
-// warning: use `--view=jade' or `--help' for additional options
-
-// destination is not empty, continue? [y/N] N
-// aborting
