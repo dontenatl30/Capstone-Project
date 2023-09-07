@@ -59,6 +59,33 @@ function App() {
       </Router>
     </div>
   
+
+function App() {
+
+
+  return (
+    <>
+    <div className='App'>
+      <Router>
+        {/* navbar goes here and included in all routes */}
+        
+        <Navbar />
+        
+        <Routes>
+           <Route path='/register' element={<Reg />} />
+           <Route path='/login' element={<Login />} />
+           <Route path='/home' element={<Home />} />
+           <Route path='/theme' element={<Theme />} />
+           <Route path='/puzzle' element={<Puzzle />} />
+           <Route path='/scoreboard' element={<Scoreboard />} />
+           
+           
+          
+          
+        </Routes>
+      </Router>
+    </div>
+   
     </>
   )
 }
