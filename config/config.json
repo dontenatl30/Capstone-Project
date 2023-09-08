@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "mumwzvuz",
+    "password": "Rti9ZAj4XB8E3vDsXl9Gq8EBESLlcipA",
+    "database": "mumwzvuz",
+    "host": "rajje.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "mumwzvuz",
+    "password": "Rti9ZAj4XB8E3vDsXl9Gq8EBESLlcipA",
+    "database": "mumwzvuz",
+    "host": "rajje.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "mumwzvuz",
+    "password": "Rti9ZAj4XB8E3vDsXl9Gq8EBESLlcipA",
+    "database": "mumwzvuz",
+    "host": "rajje.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
+
+
