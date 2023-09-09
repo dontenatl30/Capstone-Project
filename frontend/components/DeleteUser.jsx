@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function DeleteUser({ match }) {
+function DeleteUser() {
   const [error, setError] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const { userId } = useParams();
 
-
   useEffect(() => {
+    // Create a variable to store whether the component is mounted
+    let isMounted = true;
 
     // Function to handle the user deletion
     const deleteUser = async () => {
@@ -17,26 +18,32 @@ function DeleteUser({ match }) {
           method: 'DELETE',
         });
 
-        if (response.ok) {
+        if (response.ok && isMounted) {
           // Handle successful deletion (e.g., display a success message)
           console.log('User deleted successfully');
-        } else {
+        } else if (isMounted) {
           // Handle deletion error (e.g., display an error message)
           const errorData = await response.json();
           setError(errorData.error || 'User deletion failed');
         }
       } catch (error) {
         // Handle network errors or exceptions
-        console.error('User deletion error:', error.message);
-        setError('Network error, please try again');
+        if (isMounted) {
+          console.error('User deletion error:', error.message);
+          setError('Network error, please try again');
+        }
       } finally {
-        setIsDeleting(false);
+        // If the component is mounted, update the state
+        if (isMounted) {
+          setIsDeleting(false);
+        }
       }
     };
-
-    // Call the deleteUser function when the component mounts
     setIsDeleting(true);
     deleteUser();
+    return () => {
+      isMounted = false;
+    };
   }, [userId]);
 
   return (
@@ -58,3 +65,4 @@ function DeleteUser({ match }) {
 }
 
 export default DeleteUser;
+

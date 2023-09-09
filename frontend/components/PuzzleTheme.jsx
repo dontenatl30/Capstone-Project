@@ -8,9 +8,6 @@ export const Theme = () => {
     <>
       <div className="theme">this is the theme page</div>
       
-      <Routes>
-           <Route path='/useApiFetcherThemeImages' element={<PixabayImageFetcher />} />
-        </Routes>
     </>
   );
 };
