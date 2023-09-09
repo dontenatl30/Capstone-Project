@@ -22,7 +22,7 @@
     "nodemon": "^3.0.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
-    "react-jigsaw-puzzle": "^1.0.5",
+    "phaser": "^3.60.0",
     "sequelize": "^6.32.1"
   }
 }
