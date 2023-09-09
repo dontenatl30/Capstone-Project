@@ -1,5 +1,4 @@
 
-
 // function MyJigsawPuzzle() {
 //   // Define your puzzle image and piece size
 //   const imageUrl = 'path/to/your/puzzle-image.jpg';
@@ -47,4 +46,5 @@ const MyPixiComponent = () => {
 };
 
 export default MyPixiComponent;
+
 

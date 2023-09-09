@@ -17,7 +17,6 @@ function DeleteUser() {
         const response = await fetch(`http://localhost:3002/users/delete/${userId}`, {
           method: 'DELETE',
         });
-
         if (response.ok && isMounted) {
           // Handle successful deletion (e.g., display a success message)
           console.log('User deleted successfully');

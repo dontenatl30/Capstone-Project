@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import useApiFetcherThemeImages from "./Hooks/useApiFetcherThemeImages";
 // import { createRoot } from 'react-dom'; 
@@ -31,7 +32,6 @@ import "./App.css";
 // }
 
 // export default withAuth(ProtectedComponent); 
-
 
 function App() {
   useEffect(() => {
