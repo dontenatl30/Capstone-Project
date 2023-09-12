@@ -15,15 +15,6 @@ module.exports = {
       puzzleID: {
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      puzzleTheme: {
-        type: Sequelize.STRING
-      },
-      image: {
-        type: Sequelize.STRING, // You might want to use DataTypes.TEXT if storing a large amount of data
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
