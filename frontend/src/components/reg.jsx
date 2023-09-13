@@ -12,27 +12,27 @@ export const Reg = () => {
         <br>
         </br>
         <form>
-        <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
-          <input type="text" class="form-control" id="firstName"/>
+        <div className="mb-3">
+          <label for="firstName" className="form-label">First Name</label>
+          <input type="text" className="form-control" id="firstName"/>
         </div>
-        <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input type="text" class="form-control" id="lastName"/>
+        <div className="mb-3">
+          <label for="lastName" className="form-label">Last Name</label>
+          <input type="text" className="form-control" id="lastName"/>
         </div>
-        <div class="mb-3">
-          <label for="emailAddress" class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="email"/>
+        <div className="mb-3">
+          <label for="emailAddress" className="form-label">Email Address</label>
+          <input type="email" className="form-control" id="email"/>
         </div>
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="email" class="form-control" id="username"/>
+        <div className="mb-3">
+          <label for="username" className="form-label">Username</label>
+          <input type="email" className="form-control" id="username"/>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPasswpasswordord1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password"/>
+        <div className="mb-3">
+          <label for="exampleInputPasswpasswordord1" className="form-label">Password</label>
+          <input type="password" className="form-control" id="password"/>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
       <br>
       </br>

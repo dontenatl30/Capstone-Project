@@ -1,5 +1,5 @@
 
-export const imageSeeder = {
+ const imageSeeder = {
     backgrounds: [],
     fashion: [],
     nature: [],

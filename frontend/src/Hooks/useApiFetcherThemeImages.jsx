@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { imageSeeder } from '../../../seeders/shared';
+// import { imageSeeder } from '../../../seeders/shared';
 
 
 
