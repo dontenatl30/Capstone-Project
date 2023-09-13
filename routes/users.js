@@ -7,7 +7,9 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const authCheck = require("../middleware/authCheck");
-// User login
+// const { imageSeeder } = require('../seeders/shared');
+const { imageSeeder } = require('../seeders/shared');
+
 
 
 /* GET users listing. */
@@ -186,5 +188,23 @@ router.get('/api/pixabay', async (req, res) => {
   }
 });
 
+
+// router.get('/seeder', (req, res) => {
+//   res.json(imageSeeder);
+// });
+
+router.post('/store-images', (req, res) => {
+  const { theme, images } = req.body;
+
+  // Store the images in your imageSeeder object
+  if (imageSeeder[theme]) {
+    imageSeeder[theme] = imageSeeder[theme].concat(images);
+  } else {
+    imageSeeder[theme] = images;
+  }
+
+  // Send a response indicating success or any other relevant response
+  res.json({ message: 'Images stored successfully' });
+});
 
 module.exports = router;

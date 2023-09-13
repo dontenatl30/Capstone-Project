@@ -1,7 +1,7 @@
 import React from "react";
 // import PuzzleBoard from "./PuzzleBoard";
 // import PuzzlePiece from "./PuzzlePieces";
-import PuzzleImage from "./PuzzleImage";
+import MyJigsawPuzzle from "./JigsawPuzzle";
 
 
 export const Puzzle = () => {
@@ -9,7 +9,9 @@ export const Puzzle = () => {
     <>
       <div className="puzzle">This is the puzzle page</div>
             {/* Render the PuzzleBoard component below */}
-            <PuzzleImage />
+            <MyJigsawPuzzle />
+
+
     </>
   );
 };
