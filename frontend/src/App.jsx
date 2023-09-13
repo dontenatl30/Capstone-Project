@@ -22,13 +22,6 @@ import PixabayImageFetcher from './Hooks/useApiFetcherThemeImages';
 // import { Theme } from './components/theme'
 import "./App.css";
 
-// include nearly ALL components except for register/createUser page  
-// function ProtectedComponent() {
-//   return <div>This is a protected component.</div>;
-// }
-
-// export default withAuth(ProtectedComponent); 
-
 
 function App() {
 
