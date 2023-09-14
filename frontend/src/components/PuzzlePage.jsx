@@ -10,8 +10,6 @@ export const Puzzle = () => {
       <div className="puzzle">This is the puzzle page</div>
             {/* Render the PuzzleBoard component below */}
             <MyJigsawPuzzle />
-
-
     </>
   );
 };

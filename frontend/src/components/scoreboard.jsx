@@ -4,7 +4,7 @@ import React from "react";
 export const Scoreboard = () => {
   return (
     <>
-      <div class="scoreboard">This is the scoreboard page</div>
+      <div className="scoreboard">This is the scoreboard page</div>
     </>
   );
 };

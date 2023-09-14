@@ -1,102 +1,93 @@
-import React, { useState } from "react";
-// import PixabayImageFetcher from "../src/Hooks/useApiFetcherThemeImages";
-import PixabayImageFetcher from "../Hooks/useApiFetcherThemeImages";
-import { imageSeeder } from "../../../seeders/shared";
+import React, { useState, useEffect } from "react";
 import MyJigsawPuzzle from "./JigsawPuzzle";
 
 export const Theme = () => {
   const [selectedTheme, setSelectedTheme] = useState("");
-  const [selectedImage, setSelectedImage] = useState('');
+  const [images, setImages] = useState([]);
   const [fetching, setFetching] = useState(false);
 
+  const themes = [
+    'backgrounds', 'fashion', 'nature', 'science', 'education',
+    'feelings', 'health', 'people', 'religion', 'places',
+    'animals', 'industry', 'computer', 'food', 'sports',
+    'transportation', 'travel', 'buildings', 'business', 'music'
+  ];
+
   const changeTheme = async (theme) => {
-    try {
-      const images = await fetchImagesForTheme(theme);
-      console.log(`Fetched images for theme: ${theme}`, images);
-
-      if (images.length > 0) {
-        setSelectedImage(images[0]); // need to figure out how to change the image or get it from its store place
-      }
-    } catch (error) {
-      console.error(`Error fetching images for theme ${theme}:`, error);
-    } finally {
-      setFetching(false);
-    }
     setSelectedTheme(theme);
-    setFetching(true);
-
-    try {
-      const images = await fetchImagesForTheme(theme);
-      console.log(`Fetched images for theme: ${theme}`, images);
-    } catch (error) {
-      console.error(`Error fetching images for theme ${theme}:`, error);
-    } finally {
-      setFetching(false);
-    }
   };
 
-  const fetchImagesForTheme = async (theme) => {
-    try {
+  useEffect(() => {
+    if (selectedTheme) {
       const baseURL = "https://pixabay.com/api/";
       const API_KEY = "39230660-a4bee92977e02c758c511e738";
+      const query = encodeURIComponent(selectedTheme);
 
-      const URL = `${baseURL}?key=${API_KEY}&q=${encodeURIComponent(
-        theme
-      )}&page=1&per_page=25`;
+      fetch(`${baseURL}?key=${API_KEY}&q=${query}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => setImages(data.hits))
+        .catch((error) => console.error("Error fetching images:", error));
+    }
+  }, [selectedTheme]);
 
-      const response = await fetch(URL);
-      console.log(`Response status: ${response.status}`);
+  const seedDatabase = async (themeToSeed) => {
+    try {
+      const imagesToSeed = images.map((image) => ({
+        name: image.user,
+        puzzleTheme: themeToSeed,
+        image: image.webformatURL, 
+        timeToComplete: 0, 
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }));
+      const response = await fetch("/api/seed-database", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ theme: themeToSeed, images: imagesToSeed }),
+      });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("API Response:", data);
-
-        if (data.hits && data.hits.length > 0) {
-          const newImages = data.hits.map((hit) => hit.largeImageURL);
-
-          console.log("Fetched newImages:", newImages);
-
-          if (!imageSeeder[theme]) {
-            imageSeeder[theme] = [];
-          }
-
-          imageSeeder[theme] = imageSeeder[theme].concat(newImages);
-
-          return newImages;
-        } else {
-          console.log(`No hits for theme: ${theme}`);
-          return [];
-        }
+        const result = await response.json();
+        console.log(result.message);
       } else {
-        throw new Error(`HTTP Error: ${response.status}`);
+        console.error("Failed to fetch and store images");
       }
     } catch (error) {
-      console.error(`Error fetching images for theme ${theme}:`, error);
-      return [];
+      console.error("Error seeding the database:", error);
     }
   };
 
-  return (
-    <>
-      <div className="theme">This is the theme page</div>
-      {/* Render buttons to select different themes */}
-      {Object.keys(imageSeeder).map((theme) => (
-        <button key={theme} onClick={() => changeTheme(theme)}>
-          {theme}
-        </button>
-      ))}
-      {/* Render a button to fetch images for the selected theme */}
-      <button
-        onClick={() => {
-          if (!fetching) {
-            changeTheme(selectedTheme);
-          }
-        }}
-      >
-        {fetching ? "Fetching..." : `Fetch ${selectedTheme}`}
+return (
+  <>
+    <div className="theme">This is the theme page</div>
+    {themes.map((theme) => (
+      <button key={theme} onClick={() => changeTheme(theme)}>
+        {theme.charAt(0).toUpperCase() + theme.slice(1)} 
       </button>
-      {/* Render the fetched images using PixabayImageFetcher */}
-      <PixabayImageFetcher imageSrc={selectedImage} />
-    </>
-  );
+    ))}
+    <button
+      onClick={() => {
+        if (!fetching) {
+          setFetching(true);
+          changeTheme(selectedTheme);
+        }
+      }}
+    >
+      {fetching ? "Fetching..." : `Fetch ${selectedTheme}`}
+    </button>
+    {images.map((image, index) => (
+      <img key={index} src={image.webformatURL} alt={`Image ${index}`} />
+    ))}
+    <button onClick={() => seedDatabase(selectedTheme)}>Seed Database</button>
+    {selectedTheme && <MyJigsawPuzzle images={images} />}
+  </>
+);
 };
+

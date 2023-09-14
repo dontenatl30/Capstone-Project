@@ -25,10 +25,6 @@ import "./App.css";
 
 function App() {
 
-  // const fakeStoreUrl = "https://fakestoreapi.com/products"; // change the url to match the selected api once you have it on hand 
-  // const [activeTab, setActiveTab] = useState("items");
-  // const { data, error, loading } = useApiFetcherThemeImages(fakeStoreUrl); // change the url to match the selected api once you have it on hand
-
   return (
     <>
     <div className='App'>
@@ -39,11 +35,12 @@ function App() {
 
            <Route path='/home' element={<Navbar />} >
           <Route index element={<MainPage/> }/> 
-           <Route path='/home/puzzle' element={<Puzzle />} />
+           <Route path='/home/puzzle' element={<Puzzle/>} />
+
            <Route path='/home/scoreboard' element={<Scoreboard />} />
            <Route path='/home/theme' element={<Theme />} />
            </Route>
-
+           
 
            <Route path='/profile/:userId' element={<UserProfile />} />
            <Route path='/edit/:userId' element={<EditUser />} />
