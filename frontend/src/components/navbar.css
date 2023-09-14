@@ -1,0 +1,54 @@
+/* YourNavbar.css */
+#navBar {
+    font-family: 'Impact', sans-serif; /* Apply Impact font to the navbar */
+    background-color: #ffffff; /* Background color for the navbar */
+    padding: 10px 0; /* Vertical and horizontal padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+  
+  .nav-link {
+    color: #333333; /* Text color for nav links */
+    font-weight: bold; /* Make the font bold */
+    text-transform: uppercase; /* Uppercase text */
+  }
+  
+  .nav-link:hover {
+    color: #007bff; /* Text color on hover */
+  }
+  
+  .nav-link.active {
+    color: #007bff; /* Text color for active link */
+  }
+  
+  /* Style the My Profile and Logout links */
+  a {
+    color: #007bff; /* Link text color */
+    text-decoration: none; /* Remove underlines */
+    margin-right: 20px; /* Add spacing between links */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Style the User icon (assuming it's an SVG) */
+  svg {
+    fill: #333333; /* Icon color */
+    margin-left: 20px; /* Add spacing to the left of the icon */
+  }
+  
+  /* Style the navbar when it's collapsed (if needed) */
+  @media (max-width: 768px) {
+    #navBar {
+      background-color: #ffffff; /* Change background color when collapsed */
+    }
+  
+    .navbar-toggler-icon {
+      color: #333333; /* Icon color for the collapsed menu */
+    }
+  
+    .navbar-collapse {
+      background-color: #ffffff; /* Background color for the collapsed menu */
+    }
+  }
+  

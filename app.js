@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const imageRoutes = require('./imageRoutes'); // Update the path accordingly
 
 const app = express();
 const port = process.env.PORT || 3002; 
@@ -29,8 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api', imageRoutes); // Mount the routes under the /api URL prefix
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

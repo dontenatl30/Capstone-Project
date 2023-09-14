@@ -1,33 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { User } from 'phosphor-react'
+import './navbar.css'
 export const Navbar = () => {
   return (
     <>
-      <div class="navBar">
-        <ul class="nav nav-pills nav-fill">
-          <li class="nav-item">
-            <a class="nav-link" href="./home">
+      <div id="navBar" className="navbar fixed-top navbar-light bg-light">  
+      <ul className="nav nav-pills nav-fill"> 
+          <li className="nav-item">
+            <a className="nav-link" href="/home">
               Home
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./theme">
+          <li className="nav-item">
+            <a className="nav-link" href="/home/theme">
               Theme
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./puzzle">
+          <li className="nav-item">
+            <a className="nav-link" href="/home/puzzle">
               Puzzle
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./scoreboard">
+          <li className="nav-item">
+            <a className="nav-link" href="/home/scoreboard">  
               Scoreboard
-            </a>
-          </li>
-        </ul>
-      </div>
+            </a> 
+          </li> 
+        </ul>  <Link to='/profile/userId'>My Profile</Link><Link to='/logout'>Logout</Link> <User size={32}  />
+      </div> 
+      
+
+
     </>
   );
 };
+
+
+
+
+
+
+

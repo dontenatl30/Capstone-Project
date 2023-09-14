@@ -1,10 +1,13 @@
 import React from "react";
+import { Navbar } from "./Nav";
+import ScoreboardGrid from "./ScoreBoardTable";
 
 
 export const Scoreboard = () => {
   return (
     <>
-      <div class="scoreboard">This is the scoreboard page</div>
+      <Navbar />
+      <ScoreboardGrid />
     </>
   );
 };
