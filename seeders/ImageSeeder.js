@@ -1,5 +1,4 @@
-
- const imageSeeder = {
+const imageSeeder = {
     backgrounds: [],
     fashion: [],
     nature: [],
@@ -20,5 +19,6 @@
     buildings: [],
     business: [],
     music: [],
-  };
-  
+  }; 
+
+  module.exports = imageSeeder;
