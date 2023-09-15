@@ -15,8 +15,10 @@ function DeleteUser() {
           method: 'DELETE',
         });
         if (response.ok && isMounted) {
+        if (response.ok && isMounted) {
           // Handle successful deletion (e.g., display a success message)
           console.log('User deleted successfully');
+        } else if (isMounted) {
         } else if (isMounted) {
           // Handle deletion error (e.g., display an error message)
           const errorData = await response.json();
@@ -28,7 +30,16 @@ function DeleteUser() {
           console.error('User deletion error:', error.message);
           setError('Network error, please try again');
         }
+        if (isMounted) {
+          console.error('User deletion error:', error.message);
+          setError('Network error, please try again');
+        }
       } finally {
+        // If the component is mounted, update the state
+        if (isMounted) {
+          setIsDeleting(false);
+        }
+      }
         // If the component is mounted, update the state
         if (isMounted) {
           setIsDeleting(false);
@@ -37,6 +48,9 @@ function DeleteUser() {
     };
     setIsDeleting(true);
     deleteUser();
+    return () => {
+      isMounted = false;
+    };
     return () => {
       isMounted = false;
     };

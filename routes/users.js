@@ -7,7 +7,11 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const authCheck = require("../middleware/authCheck");
-// User login
+// const { imageSeeder } = require('../seeders/shared');
+const { generateSeederFileContent, seedDatabase } = require('./seeders');
+const { sequelize } = require('./models'); // Adjust the path to your Sequelize setup file
+const fs = require('fs');
+
 
 
 /* GET users listing. */
@@ -20,10 +24,7 @@ router.post('/create', async (req, res) => {
   const { firstName, lastName, email, username, password } = req.body;
 
   try {
-    // Hash the user's password
     const hashPassword = await bcrypt.hash(password, saltRounds);
-
-    // Create a new user in the database using Sequelize
     const newUser = await User.create({
       firstName,
       lastName,
@@ -32,7 +33,6 @@ router.post('/create', async (req, res) => {
       password: hashPassword,
     });
 
-    // Respond with success message and/or user data
     res.status(201).json({ message: 'User created', user: newUser });
   } catch (error) {
     console.error('Error creating user:', error);
@@ -56,13 +56,11 @@ router.post('/login', async (req, res) => {
       const isPasswordMatch = await bcrypt.compare(password, user.password);
       console.log(isPasswordMatch)
       if (isPasswordMatch) {
-        // If passwords match, generate a JWT token for authentication
         const token = jwt.sign({ userId: user.id }, 'superSecretPrivateKey', { expiresIn: '3h' });
         console.log(isPasswordMatch)
         // Set the token as a cookie (or you can store it securely based on your app's needs)
         res.cookie('token', token);
         console.log(token);
-        // Respond with success or redirect as needed
         res.status(200).json({ message: 'Login successful' });
       } else {
         // If passwords do not match, respond with an error
@@ -186,5 +184,38 @@ router.get('/api/pixabay', async (req, res) => {
   }
 });
 
+router.get('/api/images/:theme', (req, res) => {
+  const theme = req.params.theme;
+  const images = imageSeeder[theme] || [];
+  res.json(images);
+});
+
+
+router.post('/api/seed-database', async (req, res) => {
+  try {
+    await sequelize.sync({ force: true });
+
+    const seederFilePath = './imageSeeder.js';
+    const { theme, images } = req.body;
+    const seederFileContent = generateSeederFileContent(images);
+
+    fs.writeFileSync(seederFilePath, seederFileContent);
+    const existingSeederFileContent = fs.readFileSync(seederFilePath, 'utf8');
+
+    const updatedSeederFileContent = existingSeederFileContent.replace(
+      `/* Add images for ${theme} here */`,
+      `/* Add images for ${theme} here */\n${JSON.stringify(images, null, 2)},`
+    );
+    fs.writeFileSync(seederFilePath, updatedSeederFileContent);
+    await seedDatabase();
+
+    res.status(200).json({ message: 'Database seeding completed successfully.' });
+  } catch (error) {
+    console.error('Error seeding the database:', error);
+    res.status(500).json({ error: 'Database seeding failed.' });
+  }
+});
+
 
 module.exports = router;
+

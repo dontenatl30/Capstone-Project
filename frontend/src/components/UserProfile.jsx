@@ -41,7 +41,7 @@ function UserProfile() {
             <div className="error-message">{error}</div>
           ) : (
             <div>
-              <p style="display: none;">ID: {userProfile.id}</p>
+              <p>ID: {userProfile.id}</p>
               <p>First Name: {userProfile.firstName}</p>
               <p>Last Name: {userProfile.lastName}</p>
               <p>Email: {userProfile.email}</p>

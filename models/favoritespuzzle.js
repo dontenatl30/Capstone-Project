@@ -25,47 +25,20 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  FavoritePuzzle.init({
-    // Additional attributes can be defined here, such as progress and timer status
-        progress: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0, // Progress starts at 0, indicating not started
-    },
-    image: {
-      type: DataTypes.STRING, // You might want to use DataTypes.TEXT if storing a large amount of data
-    },
-    timerStopped: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: false, // Timer is not stopped by default
-    },
-    userID: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: models.User,
-        key: "id",
-    }},
-    puzzleID: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: models.Puzzle,
-        key: "id",
-    }},
+  FavoritePuzzle.init(
+    {
     progress: {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0, // Progress starts at 0, indicating not started
     },
-    image: {
-      type: DataTypes.STRING, // You might want to use DataTypes.TEXT if storing a large amount of data
-    },
     timerStopped: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false, // Timer is not stopped by default
     },
-  }, {
+  },
+  {
     sequelize,
     modelName: 'FavoritePuzzle',
     tableName: 'favorite_puzzles', // You can set a custom table name here if needed
