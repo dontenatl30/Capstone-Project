@@ -1,0 +1,43 @@
+/* Stopwatch.css */
+.stopwatch-container {
+    text-align: center;
+    background-color: #f0f4f7; /* Light blue background */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .stopwatch-heading {
+    color: #0073e6; /* Dark blue text color for heading */
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .stopwatch-time {
+    color: #0073e6; /* Dark blue text color for time display */
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+  }
+  
+  .start-button,
+  .reset-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #0073e6; /* Dark blue button background color */
+    color: #fff; /* White text color for buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .start-button:hover,
+  .reset-button:hover {
+    background-color: #0051a8; /* Darker blue on hover */
+  }
+  

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import './createuser.css'
+import { PuzzlePiece } from 'phosphor-react'
+
 
 function CreateUser() {
   const [formData, setFormData] = useState({
@@ -9,7 +13,7 @@ function CreateUser() {
     username: '',
     password: '',
   });
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +29,8 @@ function CreateUser() {
       if (response.ok) {
         const data = await response.json();
         console.log('User created:', data.user);
+        navigate('/login')
+
         // Handle success (e.g., show a success message or redirect)
       } else {
         // Handle error response (e.g., show an error message)
@@ -34,6 +40,7 @@ function CreateUser() {
       // Handle network errors or exceptions
       console.error('Error creating user:', error.message);
     }
+
   };
 
   // const handleChange = (e) => {
@@ -43,7 +50,7 @@ function CreateUser() {
 
   return (
     <>
-    <h1 className="title">Puzzle Facts</h1>
+  <h1 className="title">PuzzleCrafts   <PuzzlePiece size={45} /> </h1> 
     <br>
     </br>
     <h3>Register Below</h3>

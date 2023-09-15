@@ -1,5 +1,4 @@
 import React from 'react';
-
 const PuzzleBoard = () => {
   return (
     <div>
@@ -8,5 +7,4 @@ const PuzzleBoard = () => {
     </div>
   );
 };
-
 export default PuzzleBoard;

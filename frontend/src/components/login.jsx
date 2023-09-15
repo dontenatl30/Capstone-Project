@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Link, BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 function UserLogin() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ function UserLogin() {
   // const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
 
+  const navigate =useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,6 +34,8 @@ function UserLogin() {
       if (response.ok) {
         // Handle successful login (e.g., redirect to a dashboard)
         console.log('Login successful');
+        navigate('/home')
+        
         // Redirect the user here
       } else {
         // Handle login error (e.g., display an error message)

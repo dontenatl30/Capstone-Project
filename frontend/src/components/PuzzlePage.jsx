@@ -1,15 +1,16 @@
 import React from "react";
+import { Navbar } from "./Nav";
+import Stopwatch from "./Stopwatch";
 // import PuzzleBoard from "./PuzzleBoard";
 // import PuzzlePiece from "./PuzzlePieces";
-import MyJigsawPuzzle from "./JigsawPuzzle";
-
-
-export const Puzzle = () => {
+// import PuzzleImage from "./PuzzleImage";
+export const PuzzleComponent = () => {
   return (
     <>
-      <div className="puzzle">This is the puzzle page</div>
+            <Navbar />
             {/* Render the PuzzleBoard component below */}
-            <MyJigsawPuzzle />
+            {/* <PuzzleImage /> */}
+            <Stopwatch />
     </>
   );
 };
