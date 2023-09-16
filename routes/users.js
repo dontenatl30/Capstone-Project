@@ -8,8 +8,8 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const authCheck = require("../middleware/authCheck");
 // const { imageSeeder } = require('../seeders/shared');
-const { generateSeederFileContent, seedDatabase } = require('./seeders');
-const { sequelize } = require('./models'); // Adjust the path to your Sequelize setup file
+// const { generateSeederFileContent, seedDatabase } = require('./seeders');
+// const { sequelize } = require('../models'); // Adjust the path to your Sequelize setup file
 const fs = require('fs');
 
 
