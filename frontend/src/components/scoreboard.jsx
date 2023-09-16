@@ -7,7 +7,7 @@ export const Scoreboard = () => {
   return (
     <>
       <Navbar />
-      <ScoreboardGrid />
+      
     </>
   );
 };
