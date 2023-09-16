@@ -1,0 +1,31 @@
+.difficulty-selector {
+    display: flex;
+    justify-content: space-around;
+    width: 600px; /* Adjust the width as needed */
+    margin: 40px auto;
+  }
+  
+  .difficulty-option {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .difficulty-option:hover {
+    background-color: #28a745; /* Green for Easy */
+  }
+  
+  .difficulty-option.Easy {
+    background-color: #28a745; /* Green for Easy */
+  }
+  
+  .difficulty-option.Medium {
+    background-color: #ffc107; /* Yellow for Medium */
+  }
+  
+  .difficulty-option.Hard {
+    background-color: #dc3545; /* Red for Hard */
+  }
+  
