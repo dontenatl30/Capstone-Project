@@ -1,9 +1,7 @@
 import { ListNumbers, PuzzlePiece } from "phosphor-react";
 import React from "react";
 import { Navbar } from "./Nav";
-
 export const MainPage = () => {
-  
   return (
     <>
     <Navbar />

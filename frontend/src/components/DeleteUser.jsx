@@ -15,7 +15,6 @@
 //           method: 'DELETE',
 //         });
 //         if (response.ok && isMounted) {
-//         if (response.ok && isMounted) {
 //           // Handle successful deletion (e.g., display a success message)
 //           console.log('User deleted successfully');
 //         } else if (isMounted) {
@@ -44,8 +43,8 @@
 //         if (isMounted) {
 //           setIsDeleting(false);
 //         }
-//       };
-    
+//       }
+//     };
 //     setIsDeleting(true);
 //     deleteUser();
 //     return () => {
@@ -54,7 +53,7 @@
 //     return () => {
 //       isMounted = false;
 //     };
-//   }, [userId];
+//   }, [userId]);
 //   return (
 //     <div>
 //       <h2>Delete User</h2>
@@ -73,6 +72,7 @@
 //   );
 // }
 // export default DeleteUser;
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
