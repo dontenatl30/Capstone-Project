@@ -1,0 +1,14 @@
+/* Initial styling for the random image */
+.random-image {
+    width: 50px;
+    height: 50px;
+    filter: blur(4px); /* Add blur effect */
+    cursor: pointer; /* Change cursor to indicate clickability */
+  }
+  
+  /* Styling for the random image when clicked */
+  .random-image.clicked {
+    width: 200px;
+    height: 200px;
+    filter: none; /* Remove blur effect */
+  }
