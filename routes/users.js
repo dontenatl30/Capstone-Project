@@ -6,11 +6,10 @@ const { Puzzle } = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
-const authCheck = require("../middleware/authCheck");
+// const authCheck = require("../middleware/authCheck");
 // const { imageSeeder } = require('../seeders/shared');
-// const { generateSeederFileContent, seedDatabase } = require('./seeders');
-// const { sequelize } = require('../models'); // Adjust the path to your Sequelize setup file
 const fs = require('fs');
+// const upload = require('../middleware/multer');
 
 
 
@@ -168,54 +167,32 @@ router.delete('/delete/:id', async (req, res) => {
   }
 });
 
-// Define a route to fetch images from Pixabay
-router.get('/api/pixabay', async (req, res) => {
-  try {
-    const query = req.query.query;
-    const apiKey = req.headers.authorization.replace('Bearer ', ''); // Get the API key from the header
+// router.post('/upload-image', upload.array('images'), async (req, res) => {
+//   // Access the uploaded files using req.files
+//   const imagePaths = req.files.map((file) => file.path);
 
-    const pixabayResponse = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}`);
-    const data = await pixabayResponse.json();
-
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching data from Pixabay:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-router.get('/api/images/:theme', (req, res) => {
-  const theme = req.params.theme;
-  const images = imageSeeder[theme] || [];
-  res.json(images);
-});
-
-
-router.post('/api/seed-database', async (req, res) => {
-  try {
-    await sequelize.sync({ force: true });
-
-    const seederFilePath = './imageSeeder.js';
-    const { theme, images } = req.body;
-    const seederFileContent = generateSeederFileContent(images);
-
-    fs.writeFileSync(seederFilePath, seederFileContent);
-    const existingSeederFileContent = fs.readFileSync(seederFilePath, 'utf8');
-
-    const updatedSeederFileContent = existingSeederFileContent.replace(
-      `/* Add images for ${theme} here */`,
-      `/* Add images for ${theme} here */\n${JSON.stringify(images, null, 2)},`
-    );
-    fs.writeFileSync(seederFilePath, updatedSeederFileContent);
-    await seedDatabase();
-
-    res.status(200).json({ message: 'Database seeding completed successfully.' });
-  } catch (error) {
-    console.error('Error seeding the database:', error);
-    res.status(500).json({ error: 'Database seeding failed.' });
-  }
-});
-
+//   // Save imagePaths to the database (update your Puzzle model accordingly)
+  
+//   // Respond to the client with success or error message
+//   res.json({ message: 'Images uploaded successfully', imagePaths });
+// });
 
 module.exports = router;
+
+
+// Define a route to fetch images from Pixabay
+// router.get('/api/pixabay', async (req, res) => {
+//   try {
+//     const query = req.query.query;
+//     const apiKey = req.headers.authorization.replace('Bearer ', ''); // Get the API key from the header
+
+//     const pixabayResponse = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}`);
+//     const data = await pixabayResponse.json();
+
+//     res.json(data);
+//   } catch (error) {
+//     console.error('Error fetching data from Pixabay:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 
