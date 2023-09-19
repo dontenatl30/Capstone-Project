@@ -6,6 +6,8 @@ const ScoreboardGrid = () => {
   return (
     <>
     <div>
+    <h1>Coming in V2</h1>
+
       <h2>Scoreboard</h2>
       <table className="table">
         <thead>
@@ -15,7 +17,7 @@ const ScoreboardGrid = () => {
             <th>Time</th>
           </tr>
         </thead>
-        <tbody>{scoreRows}</tbody>
+        <tbody></tbody>
       </table>
     </div>
 

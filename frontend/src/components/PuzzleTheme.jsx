@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MyJigsawPuzzle from './JigsawPuzzle';
 import DifficultySelector from './DifficultySelector';
 import { Navbar } from './Nav';
+import { PuzzlePiece } from 'phosphor-react';
 
 export const Theme = () => {
   const [selectedTheme, setSelectedTheme] = useState('');
@@ -71,6 +72,7 @@ export const Theme = () => {
       <br></br>
       <br></br>
       <h1>Select Your Puzzle Theme!</h1>
+      <PuzzlePiece size={75}/><PuzzlePiece size={75}/><PuzzlePiece size={75}/>
       <div>
         {/* Tiles */}
         <div className="container">
