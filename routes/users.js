@@ -6,7 +6,7 @@ const { Puzzle } = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
-// const authCheck = require("../middleware/authCheck");
+const authCheck = require("../middleware/authCheck");
 // const { imageSeeder } = require('../seeders/shared');
 const fs = require('fs');
 // const upload = require('../middleware/multer');
@@ -39,30 +39,22 @@ router.post('/create', async (req, res) => {
   }
 });
 
-
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // Find a single user in the database using the provided username
     const user = await User.findOne({ where: { username } });
 
     if (user === null) {
-      // If the user is not found, respond with an error
       res.status(401).json({ error: 'User not found' });
     } else {
-      // Compare the plaintext password from the form to the hashed password from the database
       const isPasswordMatch = await bcrypt.compare(password, user.password);
-      console.log(isPasswordMatch)
+
       if (isPasswordMatch) {
         const token = jwt.sign({ userId: user.id }, 'superSecretPrivateKey', { expiresIn: '3h' });
-        console.log(isPasswordMatch)
-        // Set the token as a cookie (or you can store it securely based on your app's needs)
         res.cookie('token', token);
-        console.log(token);
         res.status(200).json({ message: 'Login successful' });
       } else {
-        // If passwords do not match, respond with an error
         res.status(401).json({ error: 'Passwords do not match' });
       }
     }
@@ -72,11 +64,15 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/profile/:userId', async (req, res) => {
+router.get('/profile/:userId', authCheck, async (req, res) => {
   const { userId } = req.params;
+  const loggedInUserId = req.user.userId;
+
+  if (userId !== loggedInUserId) {
+    return res.status(403).json({ error: 'Access denied' });
+  }
 
   try {
-    // Find the user by their ID
     const user = await User.findByPk(userId);
 
     if (!user) {
@@ -84,14 +80,12 @@ router.get('/profile/:userId', async (req, res) => {
       return;
     }
 
-    // Extract user profile information
     const userProfile = {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       username: user.username,
-      // Add other profile information here if needed
     };
 
     res.status(200).json(userProfile);
@@ -101,11 +95,9 @@ router.get('/profile/:userId', async (req, res) => {
   }
 });
 
-router.get('/edit/:id', async (req, res) => {
-  const id = req.params.id;
-
+router.get('/edit/:id', authCheck, async (req, res) => {
   try {
-    // Find the user by their ID
+    const id = req.params.id;
     const user = await User.findByPk(id);
 
     if (!user) {
@@ -126,11 +118,17 @@ router.get('/edit/:id', async (req, res) => {
   }
 });
 
-router.post('/edit/:id', async (req, res) => {
-  const id = req.params.id;
-  const { firstName, lastName, email } = req.body;
-
+// Protected route to update a user's profile
+router.post('/edit/:id', authCheck, async (req, res) => {
   try {
+    const id = req.params.id;
+    const { firstName, lastName, email } = req.body;
+    
+    // Ensure that only the logged-in user can update their profile
+    if (req.user.userId !== id) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
     await User.update(
       { firstName, lastName, email },
       { where: { id: id } }
@@ -143,11 +141,15 @@ router.post('/edit/:id', async (req, res) => {
   }
 });
 
-router.delete('/delete/:id', async (req, res) => {
-  const id = req.params.id;
-  // const { firstName, lastName, email } = req.body;
-
+router.delete('/delete/:id', authCheck, async (req, res) => {
   try {
+    const id = req.params.id;
+    
+    // Ensure that only the logged-in user can delete their profile
+    if (req.user.userId !== id) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
     const user = await User.findByPk(id);
 
     if (!user) {

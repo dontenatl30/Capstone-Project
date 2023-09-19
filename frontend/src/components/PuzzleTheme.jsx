@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './Nav';
 import MyJigsawPuzzle from './JigsawPuzzle';
 import DifficultySelector from './DifficultySelector';
-import { Navbar } from './Nav';
 import { PuzzlePiece } from 'phosphor-react';
-=======
 
 
 export const Theme = () => {

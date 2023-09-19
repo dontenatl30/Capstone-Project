@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function UserLogout() {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    
     localStorage.removeItem('token');
-    window.location.href = '/login';
-  }, []);
+    navigate('/welcome', { replace: true }); // Use navigate to redirect to the login page
+  }, [navigate]);
 
   return (
     <div>
@@ -15,4 +17,6 @@ function UserLogout() {
 }
 
 export default UserLogout;
+
+
 

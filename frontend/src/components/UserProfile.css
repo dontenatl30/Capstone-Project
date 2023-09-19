@@ -1,0 +1,46 @@
+/* UserProfile.css */
+.user-profile-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.user-profile-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.user-profile-details {
+  margin-bottom: 20px;
+}
+
+.user-profile-details p {
+  margin: 10px 0;
+}
+
+.user-profile-buttons {
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+}
+
+.user-profile-button {
+  margin: 5px 0; /* Add some margin between buttons */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-profile-button:hover {
+  background-color: #0056b3;
+}
+
+  

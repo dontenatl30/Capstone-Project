@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserLogin from './components/Login';
 import CreateUser from './components/CreateUser';
 import UserLogout from './components/Logout';
@@ -7,9 +8,6 @@ import EditUser from './components/EditUser';
 import UserProfile from './components/UserProfile';
 import { MainPage } from './components/home';
 import { PuzzleComponent } from './components/PuzzlePage';
-// import withAuth from './withAuth';
-import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Scoreboard } from './components/ScoreBoard';
 import { Theme } from './components/PuzzleTheme';
 import PixabayImageFetcher from './Hooks/useApiFetcherThemeImages';
@@ -17,43 +15,17 @@ import MyJigsawPuzzle from './components/JigsawPuzzle';
 import { Welcome } from './components/Welcome';
 import "./App.css";
 
-
 function App() {
-
-// const cloudName = 'dmnqttmxn'; 
-// const apiKey = '551963275716726'; 
-
-// const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}.jpg?api_key=${apiKey}`;
-
-// // Fetch the image using the constructed URL
-// fetch(imageUrl)
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error('Network response was not ok');
-//     }
-//     return response.blob();
-//   })
-//   .then((imageBlob) => {
-//     // Use the imageBlob as needed (e.g., display it in an <img> element)
-//     const imageUrlObject = URL.createObjectURL(imageBlob);
-//     const imgElement = document.createElement('img');
-//     imgElement.src = imageUrlObject;
-//     document.body.appendChild(imgElement);
-//   })
-//   .catch((error) => console.error('Error fetching image:', error));
-
-   return (
-    <>
-
-        <div className='App'>
-      <Router>
+  return (
+    <Router>
+      <div className="App">
         <Routes>
            <Route path='/register' element={<CreateUser />} />
            <Route path='/login' element={<UserLogin />} />
-           <Route path='/home' element={<MainPage />} />
+           <Route path='/' element={<MainPage />} />
            <Route path='/welcome' element={<Welcome />} />
            <Route path='/logout' element={<UserLogout/>} />
-           <Route path='/home/puzzle' element={<PuzzleComponent />} />
+           <Route path='/home/puzzle/:difficulty' element={<PuzzleComponent />} />
            <Route path='/home/scoreboard' element={<Scoreboard />} />
            <Route path='/home/theme' element={<Theme />} />
            <Route path='/profile/:userId' element={<UserProfile />} />
@@ -63,9 +35,11 @@ function App() {
            <Route path='/MyJigsawPuzzle' element={<MyJigsawPuzzle />} /> PixabayImageFetcher
            <Route path='/Hooks/useApiFetcherThemeImages' element={<PixabayImageFetcher />} />
         </Routes>
-      </Router>
-    </div>
-    </>
-  )
+      </div>
+    </Router>
+  );
 }
-export default App
+
+export default App;
+
+
