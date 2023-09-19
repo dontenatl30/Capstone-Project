@@ -1,29 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'; // Import from react-router-dom as needed
+import { useNavigate } from 'react-router-dom';
 
 function withAuth(Component) {
   return function AuthComponent() {
     const [loading, setLoading] = useState(true);
-    const history = useHistory();
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
       // Perform a check for authentication using your backend API
-      fetch('/api/users/authCheck', { method: 'POST' }) // Send a request to your authCheck endpoint
+      fetch('/api/users/authCheck', { method: 'POST' }) // Adjust the API endpoint
         .then((response) => {
           if (response.ok) {
             setLoading(false);
           } else {
-            history.push('/login'); // Redirect to the login page if not authenticated
+            setError('Authentication failed'); // Set an error message
+            setLoading(false);
+            navigate('/login'); // Redirect to the login page if not authenticated
           }
         })
         .catch((error) => {
           console.error('Authentication error:', error);
-          history.push('/login'); // Redirect to the login page on error
+          setError('Authentication error'); // Set an error message
+          setLoading(false);
+          navigate('/login'); // Redirect to the login page on error
         });
-    }, [history]);
+    }, [navigate]);
 
     if (loading) {
       return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div>{error}</div>; // Render an error message
     }
 
     return <Component />;
@@ -31,3 +40,6 @@ function withAuth(Component) {
 }
 
 export default withAuth;
+
+
+

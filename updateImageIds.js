@@ -9,7 +9,7 @@ const updateImageIds = async () => {
 
     for (const puzzle of puzzles) {
       // Your logic to assign imageId based on existing data
-      const imageId = /* Your logic here */;
+      // const imageId = /* Your logic here */; // Remember to uncomment this code out should we decide to use it.
 
       // Update the puzzle record with the assigned imageId
       await puzzle.update({ imageId });

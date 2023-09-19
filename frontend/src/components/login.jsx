@@ -1,6 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import { Link, BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
-import { Navigate } from 'react-router-dom';
+// import React, { useState, useEffect } from 'react';
+// import { Link, BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+// import { Navigate } from 'react-router-dom';
+
+// function UserLogin() {
+//   const [formData, setFormData] = useState({
+//     username: '',
+//     password: '',
+//   });
+//   const [error, setError] = useState(null);
+//   const [isLoading, setIsLoading] = useState(false);
+//   // const [username, setUsername] = useState('');
+//   // const [password, setPassword] = useState('');
+
+//   const navigate =useNavigate()
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     setIsLoading(true);
+//     setError(null);
+
+
+//     try {
+//       const response = await fetch('http://localhost:3002/users/login', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(formData),
+//       });
+//       console.log('Request Data:', formData); // Log the request data
+//       console.log('Response Data:', response); 
+
+//       if (response.ok) {
+//         // Handle successful login (e.g., redirect to a dashboard)
+//         console.log('Login successful');
+//         navigate('/home')
+        
+//         // Redirect the user here
+//       } else {
+//         // Handle login error (e.g., display an error message)
+//         const errorData = await response.json();
+//         setError(errorData.error || 'Login failed');
+//       }
+//     } catch (error) {
+//       // Handle network errors or exceptions
+//       console.error('Login error:', error.message);
+//       setError('Network error, please try again');
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   // const handleChange = (e) => {
+//   //   const { name, value } = e.target;
+//   //   setFormData({ ...formData, [name]: value });
+//   // };
+
+//   return (
+//     <div>
+//       <h2>User Login</h2>
+//       {error && <div className="error-message">{error}</div>}
+//       <form onSubmit={handleSubmit}>
+//       <label htmlFor="username" className="form-label">Username</label>
+//         <input
+//         type="text" 
+//           name="username" className="form-control"
+//           value={formData.username}
+//           onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+//           id="username" 
+//           required
+//         />
+//         <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+//         <input
+//           type="password"
+//           name="password" className="form-control"
+//           value={formData.password}
+//           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+//           id="password"
+//           required
+//         />
+//         <button type="submit" className="btn btn-primary" disabled={isLoading}>
+//           {isLoading ? 'Logging in...' : 'Login'}
+//         </button> 
+//         <Link to='/register' className="btn btn-primary">Create User</Link>
+//       </form>
+//     </div>
+    
+//   );
+// }
+
+// export default UserLogin; initial working code
+
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function UserLogin() {
   const [formData, setFormData] = useState({
@@ -9,16 +101,14 @@ function UserLogin() {
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
 
-  const navigate =useNavigate()
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
     setError(null);
-
 
     try {
       const response = await fetch('http://localhost:3002/users/login', {
@@ -28,15 +118,17 @@ function UserLogin() {
         },
         body: JSON.stringify(formData),
       });
-      console.log('Request Data:', formData); // Log the request data
-      console.log('Response Data:', response); 
 
       if (response.ok) {
-        // Handle successful login (e.g., redirect to a dashboard)
-        console.log('Login successful');
-        navigate('/home')
-        
-        // Redirect the user here
+        // Handle successful login
+        const data = await response.json();
+        const token = data.token; // Assuming the server sends the token
+
+        // Store the token in localStorage
+        localStorage.setItem('token', token);
+
+        // Redirect the user to a protected page (e.g., /home)
+        navigate('/home');
       } else {
         // Handle login error (e.g., display an error message)
         const errorData = await response.json();
@@ -51,29 +143,30 @@ function UserLogin() {
     }
   };
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
-
   return (
     <div>
       <h2>User Login</h2>
       {error && <div className="error-message">{error}</div>}
       <form onSubmit={handleSubmit}>
-      <label htmlFor="username" className="form-label">Username</label>
+        <label htmlFor="username" className="form-label">
+          Username
+        </label>
         <input
-        type="text" 
-          name="username" className="form-control"
+          type="text"
+          name="username"
+          className="form-control"
           value={formData.username}
           onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-          id="username" 
+          id="username"
           required
         />
-        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+        <label htmlFor="exampleInputPassword1" className="form-label">
+          Password
+        </label>
         <input
           type="password"
-          name="password" className="form-control"
+          name="password"
+          className="form-control"
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           id="password"
@@ -81,13 +174,13 @@ function UserLogin() {
         />
         <button type="submit" className="btn btn-primary" disabled={isLoading}>
           {isLoading ? 'Logging in...' : 'Login'}
-        </button> 
-        <Link to='/register' className="btn btn-primary">Create User</Link>
+        </button>
+        <Link to="/register" className="btn btn-primary">
+          Create User
+        </Link>
       </form>
     </div>
-    
   );
 }
 
 export default UserLogin;
-
