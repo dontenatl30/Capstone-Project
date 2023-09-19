@@ -8,11 +8,10 @@ import UserProfile from './components/UserProfile';
 import { MainPage } from './components/home';
 import { PuzzleComponent } from './components/PuzzlePage';
 // import withAuth from './withAuth';
-import { Link } from 'react-router-dom'; // this link and the nav component for logout will need to be moved to be moved to the navbar upon merge
+import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Scoreboard } from './components/ScoreBoard';
 import { Theme } from './components/PuzzleTheme';
-// import testUpload from './components/theme';
 import PixabayImageFetcher from './Hooks/useApiFetcherThemeImages';
 import MyJigsawPuzzle from './components/JigsawPuzzle';
 
@@ -62,7 +61,6 @@ function App() {
            <Route path='/useApiFetcherThemeImages' element={<PixabayImageFetcher />} />
            <Route path='/MyJigsawPuzzle' element={<MyJigsawPuzzle />} /> PixabayImageFetcher
            <Route path='/Hooks/useApiFetcherThemeImages' element={<PixabayImageFetcher />} />
-           {/* <Route path='/theme' element={<testUpload />} /> */}
         </Routes>
       </Router>
     </div>

@@ -102,7 +102,6 @@ app.post('/push-images-to-db', async (req, res) => {
   }
 });
 
-// Replace your existing /get-images-by-theme-and-imageId endpoint with this new endpoint
 app.get('/get-images-by-theme', async (req, res) => {
   try {
     const { theme } = req.query;
@@ -110,14 +109,11 @@ app.get('/get-images-by-theme', async (req, res) => {
     if (!theme) {
       return res.status(400).json({ message: 'Theme parameter is required' });
     }
-
-    // Query your database to get image file names based on the theme
     const images = await Puzzle.findAll({
-      attributes: ['image'], // Select only the 'image' field
+      attributes: ['image'],
       where: { theme: theme },
     });
 
-    // Extract the image file names from the query result
     const imageFileNames = images.map((image) => image.image);
 
     res.json({ images: imageFileNames });
