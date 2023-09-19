@@ -96,8 +96,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function UserLogin() {
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,10 +111,10 @@ function UserLogin() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3002/users/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3002/users/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -132,12 +132,12 @@ function UserLogin() {
       } else {
         // Handle login error (e.g., display an error message)
         const errorData = await response.json();
-        setError(errorData.error || 'Login failed');
+        setError(errorData.error || "Login failed");
       }
     } catch (error) {
       // Handle network errors or exceptions
-      console.error('Login error:', error.message);
-      setError('Network error, please try again');
+      console.error("Login error:", error.message);
+      setError("Network error, please try again");
     } finally {
       setIsLoading(false);
     }
@@ -168,7 +168,9 @@ function UserLogin() {
           name="password"
           className="form-control"
           value={formData.password}
-          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
           id="password"
           required
         />

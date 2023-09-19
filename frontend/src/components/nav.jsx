@@ -45,22 +45,18 @@ export const Navbar = () => {
       <div id="navBar" className="navbar fixed-top navbar-light bg-light">  
         <ul className="nav nav-pills nav-fill"> 
           <li className="nav-item">
-            <NavLink to="/home" className="nav-link">
-              Home
-            </NavLink>
+            <a className="nav-link" href="/welcome">
+              Start
+            </a>
           </li>
           <li className="nav-item">
-            <NavLink to="/home/theme" className="nav-link">
-              Theme
-            </NavLink>
+            <a className="nav-link" href="/home/theme">
+              Play
+            </a>
           </li>
+
           <li className="nav-item">
-            <NavLink to="/home/puzzle" className="nav-link">
-              Puzzle
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/home/scoreboard" className="nav-link">
+            <a className="nav-link" href="/home/scoreboard">  
               Scoreboard
             </NavLink>
           </li> 

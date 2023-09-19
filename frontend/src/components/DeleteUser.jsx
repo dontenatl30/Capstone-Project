@@ -153,6 +153,8 @@ function DeleteUser() {
   const { userId } = useParams();
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
+  
+
   useEffect(() => {
     // Check if the user is authenticated (e.g., by verifying the presence of a token in localStorage)
     const token = localStorage.getItem('token');
@@ -218,6 +220,7 @@ function DeleteUser() {
             <div className="error-message">{error}</div>
           ) : (
             <p>User deleted successfully</p>
+            
           )}
         </div>
       )}
