@@ -89,13 +89,25 @@ function MyJigsawPuzzle({
             className="random-image"
             style={{ maxWidth: '100%' }}
           />
+          {/* Render Jigsaw Puzzle based on selected difficulty */}
+          <h1>Review Image and Complete Your Puzzle!</h1>
+
+
+
           <JigsawPuzzle
             imageSrc={randomImageFileName}
             rows={selectedDifficulty === 'easy' ? 2 : selectedDifficulty === 'medium' ? 4 : 8}
-            columns={selectedDifficulty === 'easy' ? 2 : selectedDifficulty === 'medium' ? 6 : 8}
+            columns={selectedDifficulty === 'easy' ? 2 : selectedDifficulty === 'medium' ? 6 : 8
+            onPieceDrag={handlePieceDrag}
+            onSolved={() => alert("Solved!")}
+            onMouseDown={handlePuzzleStart}
+=======
             onSolved={() => handlePuzzleSolved()}
+
           />
+
         </div>
+        
       )}
 
       {showRiddleModal && (

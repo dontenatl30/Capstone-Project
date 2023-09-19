@@ -34,7 +34,7 @@ function UserLogin() {
       if (response.ok) {
         // Handle successful login (e.g., redirect to a dashboard)
         console.log('Login successful');
-        navigate('/home')
+        navigate('/welcome')
         
         // Redirect the user here
       } else {

@@ -8,20 +8,16 @@ export const Navbar = () => {
       <div id="navBar" className="navbar fixed-top navbar-light bg-light">  
       <ul className="nav nav-pills nav-fill"> 
           <li className="nav-item">
-            <a className="nav-link" href="/home">
-              Home
+            <a className="nav-link" href="/welcome">
+              Start
             </a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/home/theme">
-              Theme
+              Play
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/home/puzzle">
-              Puzzle
-            </a>
-          </li>
+
           <li className="nav-item">
             <a className="nav-link" href="/home/scoreboard">  
               Scoreboard

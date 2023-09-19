@@ -26,9 +26,10 @@ function DifficultySelector({ onSelectDifficulty }) {
   return (
     <>
       <Navbar />
+      <br></br>
+      <br></br>
       <h1>Choose Your Difficulty</h1>
-      <br></br>
-      <br></br>
+
       <div className="container">
         <div className="row">
           <div className="col-lg-4">
@@ -63,9 +64,12 @@ function DifficultySelector({ onSelectDifficulty }) {
         columns={columns}
         onSolved={() => alert('Solved!')}
       />
+
+
     </>
   );
 }
+
 
 export default DifficultySelector;
 

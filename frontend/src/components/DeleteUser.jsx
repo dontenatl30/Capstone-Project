@@ -75,11 +75,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function DeleteUser() {
   const [error, setError] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const { userId } = useParams();
+
+  
 
   useEffect(() => {
     // Create a variable to store whether the component is mounted
@@ -134,6 +137,7 @@ function DeleteUser() {
             <div className="error-message">{error}</div>
           ) : (
             <p>User deleted successfully</p>
+            
           )}
         </div>
       )}
