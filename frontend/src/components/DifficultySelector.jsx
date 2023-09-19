@@ -8,7 +8,7 @@ function DifficultySelector({ onSelectDifficulty }) {
 
   const handleDifficultyChange = (selectedDifficulty) => {
     setDifficulty(selectedDifficulty);
-    onSelectDifficulty(selectedDifficulty); // Pass the selected difficulty to the parent component
+    onSelectDifficulty(selectedDifficulty);
   };
 
   let rows, columns;
@@ -58,8 +58,6 @@ function DifficultySelector({ onSelectDifficulty }) {
           </div>
         </div>
       </div>
-
-      {/* Render the Jigsaw Puzzle component with the selected difficulty */}
       <MyJigsawPuzzle
         selectedDifficulty={difficulty}
         rows={rows}
