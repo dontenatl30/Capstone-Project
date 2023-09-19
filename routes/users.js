@@ -131,7 +131,6 @@ router.post('/edit/:id', async (req, res) => {
   const { firstName, lastName, email } = req.body;
 
   try {
-    // Update the user's information in the database using Sequelize
     await User.update(
       { firstName, lastName, email },
       { where: { id: id } }
@@ -149,15 +148,12 @@ router.delete('/delete/:id', async (req, res) => {
   // const { firstName, lastName, email } = req.body;
 
   try {
-    // Find the user by their ID
     const user = await User.findByPk(id);
 
     if (!user) {
       res.status(404).json({ error: 'User not found' });
       return;
     }
-
-    // Delete the user from the database using Sequelize
     await User.destroy({ where: { id: id } });
 
     res.json({ message: 'User deleted successfully' });
@@ -178,21 +174,4 @@ router.delete('/delete/:id', async (req, res) => {
 // });
 
 module.exports = router;
-
-
-// Define a route to fetch images from Pixabay
-// router.get('/api/pixabay', async (req, res) => {
-//   try {
-//     const query = req.query.query;
-//     const apiKey = req.headers.authorization.replace('Bearer ', ''); // Get the API key from the header
-
-//     const pixabayResponse = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(query)}`);
-//     const data = await pixabayResponse.json();
-
-//     res.json(data);
-//   } catch (error) {
-//     console.error('Error fetching data from Pixabay:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
 

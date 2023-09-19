@@ -107,8 +107,6 @@ function PixabayImageFetcher({ selectedTheme }) {
     const perPage = 25;
     const fetchImagesForSelectedTheme = async () => {
       const images = await fetchImagesForTheme(selectedTheme, 1, perPage);
-
-      // Send the fetched images to your backend
       try {
         const backendResponse = await fetch('/api/store-images', {
           method: 'POST',
