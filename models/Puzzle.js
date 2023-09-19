@@ -17,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     image: {
-      type: DataTypes.STRING, // You might want to use DataTypes.TEXT if storing a large amount of data
+      type: DataTypes.TEXT, // You might want to use DataTypes.TEXT if storing a large amount of data
+    },
+    imageId: {
+      type: DataTypes.UUID, // Use DataTypes.UUID for unique identifiers
+      defaultValue: DataTypes.UUIDV4, // Generate UUIDs by default
+      allowNull: false, // Ensure imageId is always provided
+      primaryKey: true, // Make imageId the primary key
+      unique: true, // Ensure imageId values are unique
     },
   }, {
     sequelize,

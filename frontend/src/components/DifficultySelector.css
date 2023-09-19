@@ -1,0 +1,27 @@
+.difficulty-tile {
+    background-color: transparent;
+    text-align: center;
+    padding: 40px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  .difficulty-tile h3 {
+    margin: 0;
+    font-size: 36px;
+  }
+  .difficulty-tile:hover {
+    transform: scale(1.05);
+  }
+  .easy-tile:hover {
+    background-color: #28A745; /* Green for Easy */
+  }
+  .medium-tile:hover {
+    background-color: #FFC107;
+    justify-content: center;
+    align-items: center;/* Yellow for Medium */
+  }
+  .hard-tile:hover {
+    background-color: #DC3545; /* Red for Hard */
+  }
