@@ -15,7 +15,6 @@ import MyJigsawPuzzle from './components/JigsawPuzzle';
 import { Welcome } from './components/Welcome';
 import "./App.css";
 
-
 function App() {
   return (
     <Router>
@@ -23,10 +22,10 @@ function App() {
         <Routes>
            <Route path='/register' element={<CreateUser />} />
            <Route path='/login' element={<UserLogin />} />
-           <Route path='/home' element={<MainPage />} />
+           <Route path='/' element={<MainPage />} />
            <Route path='/welcome' element={<Welcome />} />
            <Route path='/logout' element={<UserLogout/>} />
-           <Route path='/home/puzzle' element={<PuzzleComponent />} />
+           <Route path='/home/puzzle/:difficulty' element={<PuzzleComponent />} />
            <Route path='/home/scoreboard' element={<Scoreboard />} />
            <Route path='/home/theme' element={<Theme />} />
            <Route path='/profile/:userId' element={<UserProfile />} />
@@ -42,4 +41,5 @@ function App() {
 }
 
 export default App;
+
 

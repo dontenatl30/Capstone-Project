@@ -6,7 +6,7 @@ function UserLogout() {
 
   useEffect(() => {
     localStorage.removeItem('token');
-    navigate('/login', { replace: true }); // Use navigate to redirect to the login page
+    navigate('/welcome', { replace: true }); // Use navigate to redirect to the login page
   }, [navigate]);
 
   return (

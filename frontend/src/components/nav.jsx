@@ -56,7 +56,7 @@ export const Navbar = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="/home/scoreboard">  
+            <NavLink to="/home/scoreboard" className="nav-link">
               Scoreboard
             </NavLink>
           </li> 
@@ -68,6 +68,8 @@ export const Navbar = () => {
     </>
   );
 };
+
+
 
 
 

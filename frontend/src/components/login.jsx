@@ -91,8 +91,8 @@
 
 // export default UserLogin; initial working code
 
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserLogin() {
   const [formData, setFormData] = useState({
@@ -120,22 +120,19 @@ function UserLogin() {
       });
 
       if (response.ok) {
-        // Handle successful login
         const data = await response.json();
-        const token = data.token; // Assuming the server sends the token
+        const token = data.token;
 
-        // Store the token in localStorage
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token);
 
-        // Redirect the user to a protected page (e.g., /home)
-        navigate('/home');
+        console.log("Login successful", token);
+        navigate("/welcome");
       } else {
-        // Handle login error (e.g., display an error message)
         const errorData = await response.json();
         setError(errorData.error || "Login failed");
       }
     } catch (error) {
-      // Handle network errors or exceptions
+
       console.error("Login error:", error.message);
       setError("Network error, please try again");
     } finally {
@@ -156,7 +153,9 @@ function UserLogin() {
           name="username"
           className="form-control"
           value={formData.username}
-          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, username: e.target.value })
+          }
           id="username"
           required
         />
@@ -175,7 +174,7 @@ function UserLogin() {
           required
         />
         <button type="submit" className="btn btn-primary" disabled={isLoading}>
-          {isLoading ? 'Logging in...' : 'Login'}
+          {isLoading ? "Logging in..." : "Login"}
         </button>
         <Link to="/register" className="btn btn-primary">
           Create User
