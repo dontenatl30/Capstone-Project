@@ -2,6 +2,9 @@
   "name": "capstone-project",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "20.5.1"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
@@ -32,3 +35,4 @@
     "sequelize": "^6.32.1"
   }
 }
+

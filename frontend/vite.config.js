@@ -6,11 +6,10 @@
 //   plugins: [react()]
 // })
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// vite.config.js
+import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
-export default defineConfig({
+export default {
   plugins: [react()],
   server: {
     port: 3002, // Customize the development server port
@@ -25,5 +24,5 @@ export default defineConfig({
       // Add any CSS preprocessor options here
     },
   },
-})
+};
 
