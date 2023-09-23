@@ -30,8 +30,8 @@
     "pg-hstore": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "sequelize": "^6.32.1"
   }
 }
-
