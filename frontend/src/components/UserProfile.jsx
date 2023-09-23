@@ -161,7 +161,7 @@ function UserProfile() {
       return;
     }
 
-    fetch(`http://localhost:3002/users/profile/${userId}`, {
+    fetch(`http://localhost:3000/users/profile/${userId}`, {
       headers: {
         'Authorization': `Bearer ${token}`, // Include the JWT token
       },
