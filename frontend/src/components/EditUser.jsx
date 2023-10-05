@@ -153,7 +153,7 @@ function EditUser() {
       navigate('/login');
     } else {
       // Fetch the user data for editing
-      fetch(`http://localhost:3000/users/edit/${userId}`, {
+      fetch(`http://localhost:3002/users/edit/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

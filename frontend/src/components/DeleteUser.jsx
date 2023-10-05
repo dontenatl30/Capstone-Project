@@ -258,7 +258,7 @@ function DeleteUser() {
     const deleteUser = async () => {
       try {
         // Send a DELETE request to delete the user
-        const response = await fetch(`http://localhost:3000/users/delete/${userId}`, {
+        const response = await fetch(`http://localhost:3002/users/delete/${userId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`, // Include the authentication token in the headers
